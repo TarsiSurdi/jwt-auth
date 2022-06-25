@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import requestLogger from "./middlewares/requestLogger";
 import routes from "./routes";
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -10,6 +11,7 @@ export const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
+app.use(requestLogger);
 app.use(routes);
 
 app.listen(PORT, HOSTNAME, () => {
