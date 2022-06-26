@@ -10,7 +10,7 @@ Clone the repository and create a `.env` file at it's root containing the connec
 DATABASE_URL="postgresql://<username>:<password>@<hostname>:<port>/<database_name>?schema=public"
 PORT=3000
 HOSTNAME=localhost
-PASSWORD_ENCRYPTION_SECRET=secret
+JWT_SECRET=secret
 ```
 
 ### Contributing
