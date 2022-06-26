@@ -10,7 +10,7 @@ const HOSTNAME = process.env.HOSTNAME || "localhost";
 const app = express();
 
 app.use(express.json());
-app.use(requestLogger);
+// app.use(requestLogger);
 app.use(routes);
 
 app.listen(PORT, HOSTNAME, () => {
