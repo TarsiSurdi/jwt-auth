@@ -1,12 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 import express from "express";
-import requestLogger from "./middlewares/requestLogger";
+
+import prisma from "./database";
+import requestLogger from "./middlewares/RequestLogger";
 import routes from "./routes";
 
 const PORT = Number(process.env.PORT) || 3000;
 const HOSTNAME = process.env.HOSTNAME || "localhost";
-
-export const prisma = new PrismaClient();
 
 const app = express();
 
@@ -19,7 +18,7 @@ app.listen(PORT, HOSTNAME, () => {
   prisma
     .$connect()
     .then(() => {
-      console.log("📦 Succesfully connected to database!");
+      console.log("📦 Successfully connected to database!");
     })
     .catch((err) => {
       console.error("🚫 Database connection error:\n" + err);
