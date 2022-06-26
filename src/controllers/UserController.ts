@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { prisma } from "..";
+import { hash } from "bcryptjs";
+
+import prisma from "../database";
 
 class UserController {
   async index(req: Request, res: Response) {
@@ -17,9 +19,15 @@ class UserController {
       return res.sendStatus(409);
     }
 
-    const user = await prisma.user.create({ data: { email, password } });
+    // Hashes password
+    hash(password, 10).then(async (encryptedPassword) => {
+      const user = await prisma.user.create({
+        data: { email, password: encryptedPassword },
+        select: { id: true, email: true, password: false },
+      });
 
-    return res.json(user);
+      return res.json(user);
+    });
   }
 }
 
