@@ -1,7 +1,7 @@
 import express from "express";
 
 import prisma from "./database";
-import requestLogger from "./middlewares/RequestLogger";
+// import requestLogger from "./middlewares/RequestLogger";
 import routes from "./routes";
 
 const PORT = Number(process.env.PORT) || 3000;
